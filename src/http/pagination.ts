@@ -27,7 +27,7 @@ export class Pagination {
   } {
     let pagesOffset = parseInt(page);
     if (pagesOffset == 1) {
-      pagesOffset = 1;
+      pagesOffset = 0;
     } else {
       pagesOffset = (pagesOffset - 1) * 10;
     }

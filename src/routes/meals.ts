@@ -37,13 +37,14 @@ export async function mealsRoutes(app: FastifyInstance) {
     const paginator = new Pagination();
     const { limit, pagesOffset, page } = paginator.getPaginationData(request);
     const meals = await knex("meals")
-      .select("*")
+      .select()
       .where("session_id", request.user?.session_id)
       .limit(limit)
       .offset(pagesOffset);
     const resource = new ResourceCollections(meals, {
       paginationData: { page, limit },
     });
+    console.log(resource);
     return resource;
   });
 
@@ -71,7 +72,7 @@ export async function mealsRoutes(app: FastifyInstance) {
       await knex("meals")
         .where({ id, session_id: request.user?.session_id })
         .del();
-      return reply.status(200).send();
+      return reply.status(204).send();
     }
   );
 
