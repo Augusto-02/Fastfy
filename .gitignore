@@ -1,5 +1,5 @@
 node_modules
-db/#.bd
+db/*.bd
 .env
 .env.test
 dist
